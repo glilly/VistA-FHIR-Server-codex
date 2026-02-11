@@ -26,7 +26,8 @@ WEB(RTN,FILTER) ; Entry point for Web Service calls
  I DFN="" D  Q
  . N ERRBNDL S CNT=0
  . S ERRBNDL("resourceType")="Bundle",ERRBNDL("type")="collection"
- . D LOGERR^C0FHIRGF("Web Service Request",.ERRBNDL,.CNT,"Missing DFN or Name")
+ . D LOGERR^C0FHIRGF("Web Service Request","",.ERRBNDL,.CNT,"Missing DFN or Name")
+ . S ERRBNDL("total")=CNT
  . D ENCODE^XLFJSON("ERRBNDL","RTN")
  ;
  ; Mode 3: Core FHIR Aggregator (JSON)

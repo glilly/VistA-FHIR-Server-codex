@@ -5,3 +5,6 @@ ISO8601(FDT) ;FileMan to ISO Date
  Q:FDT="" ""
  N ISO S ISO=$$FMTHL7^XLFDT(FDT)
  Q $E(ISO,1,4)_"-"_$E(ISO,5,6)_"-"_$E(ISO,7,8)_"T"_$E(ISO,9,10)_":"_$E(ISO,11,12)_":"_$E(ISO,13,14)_"Z"
+ ;
+BASE64(TEXT) ;Encode plain text as Base64
+ Q $$ENCODE^XLFBASE64($G(TEXT))

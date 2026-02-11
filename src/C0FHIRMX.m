@@ -11,5 +11,5 @@ GETMEDS(BNDL,CNT,DFN,ENCID) ;File #52 (PRESCRIPTION)
  . S BNDL("entry",CNT,"resource","medicationCodeableConcept","text")=$G(TARGET(52,ID_",",6,"E"))
  . S RXN=$$GETRX^C0FHIRRX(ID)
  . I RXN'="" S BNDL("entry",CNT,"resource","medicationCodeableConcept","coding",1,"code")=RXN
- . S BNDL("entry",CNT,"resource","encounter","reference")="Encounter/"_ENCID
+ . I $G(ENCID)'="" S BNDL("entry",CNT,"resource","encounter","reference")="Encounter/"_ENCID
  Q

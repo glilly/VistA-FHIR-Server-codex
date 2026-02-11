@@ -29,9 +29,11 @@ UTBNDL ; Test Case: FHIR Bundle with Mock Patient
  Q
  ;
 UTSRCH ; Test Case: Name Search for Mock Patient
- N FILTER,RTN,TYPE
+ N FILTER,RTN,IDX,FOUND
  S FILTER("name")="TESTPATIENT"
- D WEB^C0FHIRWS(.RTN,.TYPE,.FILTER)
- D CHKEQ^XTMUNIT(TYPE,"text/html","Search mode should return HTML")
- D CHKTF^XTMUNIT(RTN(2)["TESTPATIENT","Search result did not find mock patient")
+ D WEB^C0FHIRWS(.RTN,.FILTER)
+ D CHKEQ^XTMUNIT($G(FILTER("type")),"text/html","Search mode should return HTML")
+ S (IDX,FOUND)=0
+ F  S IDX=$O(RTN(IDX)) Q:'IDX  I RTN(IDX)["TESTPATIENT" S FOUND=1 Q
+ D CHKTF^XTMUNIT(FOUND,"Search result did not find mock patient")
  Q
